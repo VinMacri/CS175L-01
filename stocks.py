@@ -1,10 +1,11 @@
 #Vincent Macri
 #CS175L-01
+#Stocks Program
 #1/23/2023
-commissionRate = .03
-numShares = 2000
-purchasePrice = 40
-sellingPrice = 42.75
+commissionRate = float(input("Enter the commission rate: "))
+numShares = int(input("Enter the number of shares you bought: "))
+purchasePrice = float(input("Enter the price you purchased at: "))
+sellingPrice = float(input("Enter the price you sold at: "))
 
 amountPaidForStock = numShares * purchasePrice
 purchaseCommission = commissionRate * amountPaidForStock
