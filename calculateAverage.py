@@ -1,49 +1,66 @@
 #Vincent Macri
 #CS 175
 #Calculate Average and Grade
+import random as r
 
 def main():
     keepGoing = True
     while(keepGoing):
-        score1, score2, score3, score4, score5 = enter_scores()
-        avg = calc_average(score1, score2, score3, score4, score5)
-        grade1,grade2,grade3,grade4,grade5,avgGrade = determine_all_grades(score1, score2, score3, score4, score5, avg)
-        print_grade(grade1,grade2,grade3,grade4,grade5,avg, avgGrade, score1, score2, score3, score4, score5)
-        keepGoing = reask()
+        score = []
+        grade = []
+        #score = my_random(score)
+        score = enter_scores(score)
+        avg = calc_average(score)
+        grade = determine_grade(score, grade)
         
-def reask():
+        print_grade(grade, score)
+        keepGoing = repeat()
+        
+def repeat():
     reask = input("Enter 'yes' or 'y' to enter another input: ")
     if(reask.lower() == "yes" or reask.lower() == 'y'):
         keepGoing = True
     else:
         keepGoing = False
     return keepGoing
-def enter_scores():
-    score1 = int(input("Enter score 1: "))
-    score2 = int(input("Enter score 2: "))
-    score3 = int(input("Enter score 3: "))
-    score4 = int(input("Enter score 4: "))
-    score5 = int(input("Enter score 5: "))
-    return score1, score2, score3, score4, score5
 
-def calc_average(score1, score2, score3, score4, score5):
-    avg = (score1+score2+score3+score4+score5)/5
+def enter_scores(score):
+    for x in range(5):
+        s = int(input(f'Enter score {x}: '))
+        score.append(s)
+    return score
+"""
+def my_random(score):
+    for x in range(5):
+        s = r.randint(1,100)
+        score.append(s)
+    return score
+"""
+def calc_average(score):
+    avg = (score[0]+score[1]+score[2]+score[3]+score[4])/5
+    score.append(avg)
     return avg
 
-def determine_grade(score):
-    if(score >= 90):
-        grade = "A"
-    elif(score >= 80 and score <90):
-        grade = "B"
-    elif(score >= 70 and score <80):
-        grade = "C"
-    elif(score >= 60 and score <70):
-        grade = "D"
-    else:
-        grade = "F"
+def determine_grade(score, grade):
+    for x in range(len(score)):
+        if(score[x] >= 90):
+            g = "A"
+            grade.append(g)
+        elif(score[x] >= 80 and score[x] <90):
+            g = "B"
+            grade.append(g)
+        elif(score[x] >= 70 and score[x] <80):
+            g = "C"
+            grade.append(g)
+        elif(score[x] >= 60 and score[x] <70):
+            g = "D"
+            grade.append(g)
+        else:
+            g = "F"
+            grade.append(g)
     return grade
-
-def determine_all_grades(score1, score2, score3, score4, score5, avg):
+"""
+def determine_all_grades(score[], avg):
     grade1=determine_grade(score1)
     grade2=determine_grade(score2)
     grade3=determine_grade(score3)
@@ -51,16 +68,17 @@ def determine_all_grades(score1, score2, score3, score4, score5, avg):
     grade5=determine_grade(score5)
     avgGrade = determine_grade(avg)
     return grade1,grade2,grade3,grade4,grade5,avgGrade
-
-def print_grade(grade1,grade2,grade3,grade4,grade5, avg,avgGrade, score1, score2, score3, score4, score5):
+"""
+def print_grade(grade, score):
     print()
     print(f'{"Score":<15}',f'{"Numeric Grade":<15}',f'{"Letter Grade":<15}')
     print("---------------------------------------------")
-    print(f'{"Score 1:":<15}',f'{score1:<15}',f'{grade1:<15}')
-    print(f'{"Score 2:":<15}',f'{score2:<15}',f'{grade2:<15}')
-    print(f'{"Score 3:":<15}',f'{score3:<15}',f'{grade3:<15}')
-    print(f'{"Score 4:":<15}',f'{score4:<15}',f'{grade4:<15}')
-    print(f'{"Score 5:":<15}',f'{score5:<15}',f'{grade5:<15}')
-    print(f'{"Average Score:":<15}',f'{avg:<15}',f'{avgGrade:<15}')
+    print(f'{"Score 1:":<15}',f'{score[0]:<15}',f'{grade[0]:<15}')
+    print(f'{"Score 2:":<15}',f'{score[1]:<15}',f'{grade[1]:<15}')
+    print(f'{"Score 3:":<15}',f'{score[2]:<15}',f'{grade[2]:<15}')
+    print(f'{"Score 4:":<15}',f'{score[3]:<15}',f'{grade[3]:<15}')
+    print(f'{"Score 5:":<15}',f'{score[4]:<15}',f'{grade[4]:<15}')
+    print(f'{"Average Score:":<15}',f'{score[5]:<15}',f'{grade[5]:<15}')
 
-main()
+if __name__ == '__main__':
+    main()
