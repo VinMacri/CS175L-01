@@ -8,8 +8,8 @@ def main():
     while(keepGoing):
         score = []
         grade = []
-        score = my_random(score)
-        #score = enter_scores(score)
+        #score = my_random(score)
+        score = enter_scores(score)
         avg = calc_average(score)
         grade = determine_grade(score, grade)
         
@@ -23,10 +23,10 @@ def repeat():
     else:
         keepGoing = False
     return keepGoing
-"""
+
 def enter_scores(score):
     for x in range(5):
-        s = int(input(f'Enter score {x}: '))
+        s = int(input(f'Enter score {x+1}: '))
         score.append(s)
     return score
 """
@@ -35,7 +35,7 @@ def my_random(score):
         s = r.randint(1,100)
         score.append(s)
     return score
-
+"""
 def calc_average(score):
     avg = (score[0]+score[1]+score[2]+score[3]+score[4])/5
     score.append(avg)
@@ -59,16 +59,7 @@ def determine_grade(score, grade):
             g = "F"
             grade.append(g)
     return grade
-"""
-def determine_all_grades(score[], avg):
-    grade1=determine_grade(score1)
-    grade2=determine_grade(score2)
-    grade3=determine_grade(score3)
-    grade4=determine_grade(score4)
-    grade5=determine_grade(score5)
-    avgGrade = determine_grade(avg)
-    return grade1,grade2,grade3,grade4,grade5,avgGrade
-"""
+
 def print_grade(grade, score):
     print()
     print(f'{"Score":<15}',f'{"Numeric Grade":<15}',f'{"Letter Grade":<15}')
