@@ -3,8 +3,16 @@
 #averageFromInput
 
 def main():
-    total, count = sumNumbers()
-    averageNumbers(total, count)
+    try:
+        total, count = sumNumbers()
+        averageNumbers(total, count)
+    except IOError:
+        print("The file could not be opened.")
+    except ValueError:
+        print("Unexpected data. Please only input numbers.")
+    except:
+        print("An error occured when trying to execute the program.")
+    
     
 def sumNumbers():
     infile = open('numbers.txt', 'r')
